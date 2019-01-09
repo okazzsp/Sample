@@ -1,7 +1,7 @@
-float t = -1;
+float t = 0;
 float step = 3;
-float h = 20;
-float w = 250;
+float radius = 250;
+float ellipseSize = 50;
 
 void setup() {
   size(700, 700);
@@ -14,21 +14,13 @@ void draw() {
   fill(10);
   noStroke();
   rect(width/2, height/2, 150, 300);
-
+  
+  pushMatrix();
   translate(width/2, height/2);
-  float posX = w * cos(radians(t));
-  float posY = h * sin(radians(t));
-  
-  //円の大きさを増減させる
-  float circleSize = map(sin(radians(t)), -1, 1, 5, 50);
-  
-  stroke(255, 0, 0);
-  strokeWeight(circleSize);
-  
-  //円の大きさが6以上の時だけ描画
-  if (circleSize >= 6) {
-    point(posX, posY);
-  }
+  rotate(radians(t));
+  fill(255, 0, 0);
+  ellipse(radius, 0, ellipseSize, ellipseSize);
+  popMatrix();
 
   t += step;
 }
